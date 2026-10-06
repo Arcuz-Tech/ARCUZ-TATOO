@@ -1,0 +1,106 @@
+@media (max-width: 900px) {
+  main {
+    width: 100%;
+    padding: 4.2rem 1rem 1.25rem;
+  }
+
+  main > header {
+    position: sticky;
+    top: 0;
+    z-index: 8;
+    margin: -4.2rem -1rem 1rem;
+    padding: 0.85rem 7.8rem 0.85rem 1rem;
+    background: #f4f6f7ee;
+    backdrop-filter: blur(12px);
+    align-items: center;
+  }
+
+  .mobile-menu {
+    color: #202a34;
+    border-color: #cbd3d8;
+    background: white;
+  }
+
+  aside {
+    width: min(82vw, 290px);
+    height: 100dvh;
+    box-shadow: 18px 0 50px #0b141d55;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .view-intro,
+  .panel-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .table-wrap {
+    margin: 0 -1rem;
+    padding: 0 1rem;
+    overscroll-behavior-x: contain;
+  }
+
+  dialog {
+    width: 100vw;
+    max-width: none;
+    max-height: 100dvh;
+    margin: 0;
+    border-radius: 0;
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .login-art {
+    min-height: 35vh;
+    padding: 1.5rem;
+  }
+
+  .login-art h1 {
+    font-size: clamp(2.7rem, 13vw, 4rem);
+  }
+
+  .login-card {
+    padding: 2rem 1.1rem;
+  }
+
+  .login-card h2 {
+    font-size: 2.2rem;
+  }
+
+  .stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat {
+    min-width: 0;
+    padding: 1rem;
+  }
+
+  .stat strong {
+    font-size: 2rem;
+  }
+
+  .panel {
+    padding: 1rem;
+  }
+
+  .panel h2 {
+    font-size: 1.35rem;
+  }
+
+  .team-admin-card img {
+    width: 72px;
+    height: 96px;
+  }
+
+  .image-tools,
+  .check-row {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+}
