@@ -19,6 +19,14 @@ document.addEventListener('click',async e=>{
 document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('.work-card'))openWork(Number(e.target.dataset.id));});
 function openWork(id){const w=state.works.find(x=>x.id===id);if(!w)return;$('.modal-content').innerHTML=`<div class="modal-grid"><img src="${esc(w.cover)}" alt="${esc(w.title)}"><div class="modal-copy"><p class="eyebrow">${esc(w.category)} · ${esc(w.work_date||'Acervo')}</p><h3>${esc(w.title)}</h3><p>${esc(w.description)}</p></div></div>`;$('#work-modal').showModal();}
 $('.modal-close').onclick=()=>$('#work-modal').close();$('#work-modal').onclick=e=>{if(e.target===$('#work-modal'))e.target.close()};
+const adminPortal=$('#admin-portal');
+function openAdminPortal(){if(!adminPortal.open)adminPortal.showModal();$('.topbar nav').classList.remove('open');$('.menu-btn').setAttribute('aria-expanded','false');if(location.hash!=='#area-tatuador')history.pushState(null,'','#area-tatuador')}
+function closeAdminPortal(){if(adminPortal.open)adminPortal.close();if(location.hash==='#area-tatuador')history.replaceState(null,'',location.pathname+location.search+'#inicio')}
+$$('[data-admin-open]').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();openAdminPortal()}));
+$('.admin-portal-close').onclick=closeAdminPortal;
+adminPortal.addEventListener('cancel',e=>{e.preventDefault();closeAdminPortal()});
+addEventListener('popstate',()=>{if(location.hash==='#area-tatuador')openAdminPortal();else if(adminPortal.open)adminPortal.close()});
+if(location.hash==='#area-tatuador')openAdminPortal();
 $('.menu-btn').onclick=e=>{const nav=$('.topbar nav'),open=nav.classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',open)};$$('.topbar nav a').forEach(a=>a.onclick=()=>$('.topbar nav').classList.remove('open'));
 async function submit(form,url){const status=$('.form-status',form),button=$('button[type=submit]',form);status.textContent='Enviando…';button.disabled=true;try{const body=Object.fromEntries(new FormData(form));const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const data=await r.json();if(!r.ok)throw new Error(data.error);status.textContent=data.message;form.reset();}catch(e){status.textContent=e.message||'Não foi possível enviar.'}finally{button.disabled=false}}
 $('#request-form').onsubmit=e=>{e.preventDefault();submit(e.currentTarget,'/api/requests')};$('#contact-form').onsubmit=e=>{e.preventDefault();submit(e.currentTarget,'/api/contact')};
