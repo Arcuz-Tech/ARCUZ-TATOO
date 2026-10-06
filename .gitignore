@@ -5,3 +5,4 @@ data/uploads/*
 !data/uploads/.gitkeep
 npm-debug.log*
 .DS_Store
+.sites-runtime/
