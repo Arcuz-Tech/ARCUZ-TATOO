@@ -1,0 +1,28 @@
+name: arcuz-tattoo-studio
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: arcuz-tattoo-app
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "${PORT:-4187}:4187"
+    volumes:
+      - arcuz_tattoo_data:/app/data
+    networks:
+      - arcuz_tattoo_network
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:4187/api/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 15s
+networks:
+  arcuz_tattoo_network:
+    name: arcuz-tattoo-network
+volumes:
+  arcuz_tattoo_data:
+    name: arcuz-tattoo-data

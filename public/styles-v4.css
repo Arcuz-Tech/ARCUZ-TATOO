@@ -1,0 +1,85 @@
+.hero-signature {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.2rem;
+  color: #fff;
+  filter: drop-shadow(0 4px 14px #000);
+}
+
+.hero-signature img {
+  width: clamp(52px, 5vw, 74px);
+  height: clamp(52px, 5vw, 74px);
+  color: #fff;
+  filter: invert(1) drop-shadow(0 4px 12px #000);
+}
+
+.topbar .brand img {
+  filter: invert(1) drop-shadow(0 2px 7px #000);
+}
+
+.hero-signature > span {
+  font: 700 clamp(1.4rem, 2.3vw, 2.15rem)/0.85 var(--font-display);
+  letter-spacing: -0.045em;
+}
+
+.hero-signature small {
+  display: block;
+  margin-top: 0.55rem;
+  font: 600 0.62rem/1 var(--font-body);
+  letter-spacing: 0.34em;
+  color: #d7d2cc;
+}
+
+.request-section .head-outline {
+  display: inline-block;
+  color: #f2ece4;
+  -webkit-text-stroke: 2px #080808;
+  paint-order: stroke fill;
+  text-shadow: 4px 4px 0 #080808;
+}
+
+.request-section > div > p:last-child {
+  max-width: 38rem;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.style-card {
+  min-height: 285px;
+}
+
+.style-card p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.style-card:focus-within,
+.work-card:focus-visible {
+  outline: 2px solid var(--blood);
+  outline-offset: 4px;
+}
+
+@media (max-width: 560px) {
+  .hero-signature {
+    margin-bottom: 0.8rem;
+  }
+
+  .hero-signature img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .hero-signature > span {
+    font-size: 1.3rem;
+  }
+
+  .request-section .head-outline {
+    -webkit-text-stroke-width: 1.5px;
+    text-shadow: 3px 3px 0 #080808;
+  }
+
+  .style-card {
+    min-height: auto;
+  }
+}
