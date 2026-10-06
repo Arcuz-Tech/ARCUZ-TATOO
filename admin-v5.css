@@ -13,9 +13,16 @@
     background: #f4f6f7ee;
     backdrop-filter: blur(12px);
     align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+  }
+
+  main > header > div {
+    min-width: 0;
   }
 
   .mobile-menu {
+    flex: 0 0 auto;
     color: #202a34;
     border-color: #cbd3d8;
     background: white;
@@ -54,6 +61,15 @@
 }
 
 @media (max-width: 520px) {
+  main > header .eyebrow {
+    display: none;
+  }
+
+  main > header h1 {
+    font-size: 1.55rem;
+    line-height: 1.05;
+  }
+
   .login-art {
     min-height: 35vh;
     padding: 1.5rem;
