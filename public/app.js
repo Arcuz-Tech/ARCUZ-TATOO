@@ -24,5 +24,12 @@ async function submit(form,url){const status=$('.form-status',form),button=$('bu
 $('#request-form').onsubmit=e=>{e.preventDefault();submit(e.currentTarget,'/api/requests')};$('#contact-form').onsubmit=e=>{e.preventDefault();submit(e.currentTarget,'/api/contact')};
 $('#consultation-form').onsubmit=e=>{e.preventDefault();submit(e.currentTarget,'/api/consultations')};
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('reveal')}),{threshold:.08});$$('.section-head,.style-card,.artist-card,.process li').forEach(el=>observer.observe(el));
-if(matchMedia('(prefers-reduced-motion: reduce)').matches){const video=$('.hero video');video?.pause();video?.removeAttribute('autoplay')}
+const heroVideo=$('.hero video');
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){heroVideo?.pause();heroVideo?.removeAttribute('autoplay')}
+else if(heroVideo){
+  heroVideo.muted=true;heroVideo.defaultMuted=true;heroVideo.playsInline=true;heroVideo.load();
+  const playHero=()=>heroVideo.play().catch(()=>{});
+  playHero();heroVideo.addEventListener('loadeddata',playHero,{once:true});
+  document.addEventListener('pointerdown',playHero,{once:true,passive:true});
+}
 load().catch(()=>{$('.gallery').innerHTML='<p class="empty">Não foi possível carregar o portfólio agora.</p>'});
